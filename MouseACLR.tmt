@@ -1,0 +1,45 @@
+
+BEGIN_HEADER	1 3 255 0
+
+BEGIN_CHARTS
+1	Force_N	FAuto	0	5	Time_S	0	60	Position	600	0
+	Series	1	X	(74,151,204)	2
+2	Displacement_mm	-0.5	2.5	Time_S	0	60	Position	600	350
+	Series	1	X	(74,151,204)	2
+3	Force_N	0	20	Time_S	40	50	Position	600	700
+	Series	1	X	(74,151,204)	2
+
+BEGIN_HARDWAREOPTS
+TemplateHardwareVersion	2
+TemperatureSetPoint	37
+PreloadAxisSettings 1 10 9
+SyncPulseDivisor -1
+AxisDirections 1 -1
+CameraType	WebCam
+CameraShutter	15
+CameraGain	10
+CameraFocus	33
+
+
+BEGIN_CONTROLS
+Timestamp	Seconds
+SampleSizeX_um	22500
+SampleSizeY_um	4700
+NumTrueStrainSegments	10
+NumDataAveragingPoints	1
+SizeAdjustWithPreload
+RangePosLimits 1 1 500 300000
+RangeForceLimits 1 1 -1 -1
+TemperatureWarnings	0	1
+ResetWarning	1
+ZeroWarning	1
+SystemCompensation	0
+OutputColumns	SetName	Cycle	Time_S	0_Size_mm	0_Displacement_mm	0_Force_N
+
+BEGIN_MULTISET
+Name	XMode	XFunction	XUnits	XMagnitude	XPreloadType	XPreloadMag	StretchDurationSec	RecoveryDurationSec	HoldTimeSec	RestTimeSec	NumReps	DataFreqHz	ImageFreqHz	SendCOM	
+Preload-1N	Force	Ramp	N	1	None	200	5	0	10	0	1	100	5	0	_	
+1-3N[_]Cycle	Force	Sinusoid	N	3	None	1000	1	1	0	0	10	100	5	0	_	
+Preload-1N-2	Force	Ramp	N	1	None	200	1	0	10	0	1	100	5	0	_	
+Downward-Displacement	Disp	Ramp	mm	1.5	None	1000	0.15	0	0	0	1	500	5	0	_	
+Retract	Disp	Ramp	mm	-6.5	None	1000	1.3	0	0	0	1	100	5	0	_	
